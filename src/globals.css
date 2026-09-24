@@ -1,0 +1,199 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Press Start 2P', ui-monospace, monospace;
+  --font-body: 'Pixelify Sans', ui-monospace, monospace;
+
+  /* Cribl palette (Capra brand tokens), keeping the game's token names. */
+  --color-ink: #01070e;
+  --color-night: #020e1b;
+  --color-panel: #032836;
+  --color-panel-2: #062b38;
+  --color-panel-3: #0a4e5b;
+  --color-line: #2e5a68;
+  --color-mute: #8ea3b0;
+  --color-cream: #fcfaf8;
+  --color-ball: #00cccc;
+  --color-ball-2: #118285;
+  --color-court: #086cd9;
+  --color-court-2: #0c55a5;
+  --color-clay: #cf6a3c;
+  --color-grass: #3f9a45;
+  --color-rose: #ff3442;
+  --color-rose-2: #a00729;
+  --color-gold: #f2c230;
+  --color-sky: #62a4ec;
+  --color-pink: #f2a6c4;
+  --color-orange: #ff8b00;
+  --color-purple: #5959ff;
+  --color-lavender: #a5a3ff;
+  --color-mint: #9dffbd;
+  --color-cyan: #00ffff;
+  /* The actual tennis ball, for the few places the UI draws one. */
+  --color-tennis: #d6ef3a;
+
+  --animate-blink: blink 1s steps(2, start) infinite;
+  --animate-bob: bob 0.8s steps(2, start) infinite;
+  --animate-pop: pop 0.35s steps(4, end) both;
+  --animate-rise: rise 0.5s steps(5, end) both;
+  --animate-callout: callout 1.6s steps(8, end) both;
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-twinkle: twinkle 1.6s steps(2, start) infinite;
+
+  @keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+  @keyframes bob {
+    50% {
+      transform: translateY(-2px);
+    }
+  }
+  @keyframes pop {
+    0% {
+      transform: scale(0.6);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  @keyframes rise {
+    0% {
+      transform: translateY(12px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes twinkle {
+    50% {
+      opacity: 0.25;
+    }
+  }
+  @keyframes callout {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    15% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    25% {
+      transform: scale(1);
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
+}
+
+/* Crisp pixels when canvases are scaled up. */
+@utility pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Stepped 4px corners: the classic pixel-panel silhouette. */
+@utility pixel-corners {
+  clip-path: polygon(
+    0 4px,
+    4px 4px,
+    4px 0,
+    calc(100% - 4px) 0,
+    calc(100% - 4px) 4px,
+    100% 4px,
+    100% calc(100% - 4px),
+    calc(100% - 4px) calc(100% - 4px),
+    calc(100% - 4px) 100%,
+    4px 100%,
+    4px calc(100% - 4px),
+    0 calc(100% - 4px)
+  );
+}
+
+@utility pixel-corners-sm {
+  clip-path: polygon(
+    0 2px,
+    2px 2px,
+    2px 0,
+    calc(100% - 2px) 0,
+    calc(100% - 2px) 2px,
+    100% 2px,
+    100% calc(100% - 2px),
+    calc(100% - 2px) calc(100% - 2px),
+    calc(100% - 2px) 100%,
+    2px 100%,
+    2px calc(100% - 2px),
+    0 calc(100% - 2px)
+  );
+}
+
+/* Beveled pixel panel. */
+@utility pixel-panel {
+  background: var(--color-panel);
+  box-shadow:
+    inset 0 0 0 2px var(--color-line),
+    inset 0 -4px 0 0 rgb(0 0 0 / 0.28),
+    inset 0 2px 0 2px rgb(255 255 255 / 0.04);
+}
+
+/* Broadcast scoreboard glass. */
+@utility hud-glass {
+  background: rgb(2 14 27 / 0.82);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.08),
+    0 2px 0 0 rgb(0 0 0 / 0.35);
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--color-night);
+    color: var(--color-cream);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: var(--color-ball);
+    color: var(--color-ink);
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ball);
+    outline-offset: 2px;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line) transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

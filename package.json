@@ -1,0 +1,53 @@
+{
+  "name": "pixel-open",
+  "displayName": "Pixel Open: CriblCon 26 Edition",
+  "version": "1.0.1",
+  "description": "A pixel-art tennis game with real ball physics, built as a Cribl App for CriblCon 26: six Cribl-branded stadiums, goat mode on by default, and every pixel and sound generated in code.",
+  "author": "Alexander Brunner <abrunner@cribl.io>",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build && apps build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "package": "apps package",
+    "test": "vitest run",
+    "typecheck": "tsc -b",
+    "format": "prettier --write src"
+  },
+  "dependencies": {
+    "@capra/core": "^1.15.2",
+    "@capra/dx-tokens-postcss-plugin": "^0.4.0",
+    "@capra/icons": "^1.10.1",
+    "@capra/theme": "^1.6.0",
+    "@fontsource/pixelify-sans": "^5.3.0",
+    "@fontsource/press-start-2p": "^5.3.0",
+    "clsx": "^2.1.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.4",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@cribl/apps": "1.1.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "prettier": "^3.9.9",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
+  },
+  "cribl": {
+    "type": "app",
+    "createAppScriptVersion": "1.1.0"
+  },
+  "tags": {
+    "product": []
+  }
+}
