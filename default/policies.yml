@@ -1,0 +1,7 @@
+# Product API access declaration. Declare Cribl product API paths your app needs to access.
+# At install time, admins see exactly which platform resources the app will use. These grants
+# apply app-wide, to both the frontend and every backend endpoint.
+#
+# Pixel Open calls no Cribl product APIs. Its only platform call is the app-scoped KV store
+# (saved settings, tour progress and records), which the AppUser role grants automatically.
+policies: []
