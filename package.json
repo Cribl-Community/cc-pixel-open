@@ -3,7 +3,8 @@
   "displayName": "Pixel Open: CriblCon 26 Edition",
   "version": "1.0.1",
   "description": "A pixel-art tennis game with real ball physics, built as a Cribl App for CriblCon 26: six Cribl-branded stadiums, goat mode on by default, and every pixel and sound generated in code.",
-  "author": "Alexander Brunner <abrunner@cribl.io>",
+  "author": "Alexander Brunner - abrunner@cribl.io",
+  "license": "Apache-2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,7 +12,7 @@
     "build": "tsc -b && vite build && apps build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "package": "apps package",
+    "package": "node scripts/package.mjs",
     "test": "vitest run",
     "typecheck": "tsc -b",
     "format": "prettier --write src"
@@ -48,6 +49,11 @@
     "createAppScriptVersion": "1.1.0"
   },
   "tags": {
-    "product": []
+    "product": [
+      "stream",
+      "search",
+      "edge",
+      "lake"
+    ]
   }
 }

@@ -53,6 +53,12 @@ It is also a showcase for Cribl Apps: a full Vite + React game scaffolded with `
 
 Use Marketplace installation whenever the app is available there.
 
+### Install From Git
+1. Log in to Cribl and go to **Apps → View All**.
+2. Click **Add App → Import from Git**.
+3. Paste `https://github.com/Cribl-Community/cc-pixel-open` as the repository URL and `latest` as the release tag.
+4. Click **Import**.
+
 ### Install From Marketplace or URL
 1. Go to Apps in your Cribl environment.
 2. Choose the Marketplace or import from URL option.
@@ -215,14 +221,24 @@ config/
   policies.yml           no product API grants
   proxies.yml            no external domains
   schedules.yml          no schedules
+scripts/
+  package.mjs             release package builder
+  pkgutil.mjs             package and Git-layout helpers
+  prepare-git-pack.mjs    materializes static/ and default/ for Git imports
+.github/workflows/
+  release.yml             tag-driven GitHub release workflow
 AGENTS.md                notes for coding agents
+LICENSE                  Apache License 2.0
 README.md
 ```
 
 ## Versioning And Releases
 
 * The app follows semantic versioning.
-* `npm run package` bumps the version as it builds each release package.
+* Pushing a tag matching `v*` runs the release workflow. The tag version is stamped into the package without requiring a version-bump commit.
+* The workflow lints and packages the app, publishes the Git-installable layout on the release tag, moves the `latest` tag, and attaches the `.tgz` to a GitHub Release.
+* From a clean `main`, cut a release with `git tag v1.0.0 && git push origin v1.0.0`, then monitor it with `gh run watch`.
+* Before tagging, verify the release locally with `npm ci && npm run lint && npm run package -- --version 1.0.0`.
 * Release notes should mention changes to what the app saves.
 
 ## Contributing
@@ -231,7 +247,7 @@ Ideas, bug reports and changes are welcome: contact Alexander Brunner at abrunne
 
 ## License
 
-No license has been chosen yet, so ask the author before reusing the code. Cribl logos and icons come from `@capra/icons`, licensed under the Cribl Developer Agreement for use on the Cribl platform. The Press Start 2P and Pixelify Sans fonts are licensed under the SIL Open Font License 1.1.
+Pixel Open is licensed under the [Apache License 2.0](LICENSE). Cribl logos and icons come from `@capra/icons` and remain subject to the Cribl Developer Agreement for use on the Cribl platform. The Press Start 2P and Pixelify Sans fonts are licensed under the SIL Open Font License 1.1.
 
 ## App Metadata
 
@@ -239,18 +255,18 @@ No license has been chosen yet, so ask the author before reusing the code. Cribl
 |---|---|
 | App Name | Pixel Open: CriblCon 26 Edition |
 | App ID | pixel-open |
-| Version | 1.0.0 |
+| Version | 1.0.1 |
 | Author | Alexander Brunner |
 | Support Model | community-built |
 | Support Label | Community Built |
 | Support Contact | abrunner@cribl.io |
-| License | Not yet chosen |
-| License File | — |
-| Product Tags | — |
+| License | Apache-2.0 |
+| License File | `LICENSE` |
+| Product Tags | stream, search, edge, lake |
 | Category | Games |
 | Audience | end-user |
 | Availability | preview |
 | Requires External Access | no |
-| Repository | — |
+| Repository | https://github.com/Cribl-Community/cc-pixel-open |
 | Documentation | This README |
 | README Schema Version | 1.0 |
